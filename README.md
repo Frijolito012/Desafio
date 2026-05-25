@@ -7,12 +7,12 @@ La carpeta CSS que contiene el archivo style, o estilo para todos los archivos
 La estructura basica de mi proyecto es el siguiente:  
 
 ## Estructura del Proyecto
-Proyecto matematico/
-├── index/
-│   ├── pagina principal.html
-│   ├── fibonacci.html
-│   ├── primos.html
-│   └── combinado.html
-├── css/
-│   └── styles.css
-└── README.md
+Proyecto matematico/  
+├── index/  
+│   ├── pagina principal.html  
+│   ├── fibonacci.html  
+│   ├── primos.html  
+│   └── combinado.html  
+├── css/  
+│   └── styles.css  
+└── README.md  
