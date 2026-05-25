@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 3 - Fibonacci Primos</title>
+  <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Problema 3: Fibonacci + Números Primos</h1>
+    <a href="pagina principal.html" class="btn" style="background:#666;">← Volver al Menú</a>
+
+    <div class="card">
+      <h3>Generar Fibonacci y detectar Primos</h3>
+      <label>Cantidad de términos:</label>
+      <input type="number" id="cantidad" value="30" min="5" max="50">
+      <button onclick="analizarFibonacci()">Analizar</button>
+
+      <table id="tablaCombinada"></table>
+      <div id="resumen" style="margin-top:20px; font-size:1.2em;"></div>
+    </div>
+  </div>
+
+  <script>
+    function esPrimo(n) {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    function generarFibonacci(n) {
+      let fib = [0, 1];
+      for (let i = 2; i < n; i++) {
+        fib[i] = fib[i-1] + fib[i-2];
+      }
+      return fib;
+    }
+
+    function analizarFibonacci() {
+      const cantidad = parseInt(document.getElementById('cantidad').value);
+      const fib = generarFibonacci(cantidad);
+      let primosFib = [];
+      let html = `<tr><th>Posición</th><th>Fibonacci</th><th>¿Es Primo?</th></tr>`;
+
+      for (let i = 1; i < fib.length; i++) {
+        const esP = esPrimo(fib[i]);
+        if (esP) primosFib.push(fib[i]);
+        html += `
+          <tr>
+            <td>${i}</td>
+            <td><strong>${fib[i]}</strong></td>
+            <td>${esP ? '✅ Sí' : '❌ No'}</td>
+          </tr>`;
+      }
+
+      document.getElementById('tablaCombinada').innerHTML = html;
+      document.getElementById('resumen').innerHTML = `
+        De los primeros <strong>${cantidad}</strong> números de Fibonacci,<br>
+        <strong>${primosFib.length}</strong> son primos: <strong>${primosFib.slice(0,8).join(', ')}${primosFib.length > 8 ? '...' : ''}</strong>
+      `;
+    }
+
+    window.onload = analizarFibonacci;
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 2 - Primos de Seguridad</title>
+  <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Problema 2: Números Primos de Seguridad</h1>
+    <a href="pagina principal.html" class="btn" style="background:#666;">← Volver al Menú</a>
+
+    <div class="card">
+      <h3>Verificar número</h3>
+      <input type="number" id="numero" value="23">
+      <button onclick="verificarNumero()">Verificar</button>
+      <div id="verificacion" style="margin-top:15px; font-size:1.2em;"></div>
+    </div>
+
+    <div class="card">
+      <h3>Generar Primos de Seguridad</h3>
+      <button onclick="generarPrimos()">Generar 10 Primos de Seguridad</button>
+      <div id="lista" style="margin-top:20px;"></div>
+    </div>
+  </div>
+
+  <script>
+    function esPrimo(n) {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    function esSafePrime(p) {
+      return esPrimo(p) && esPrimo((p-1)/2);
+    }
+
+    function verificarNumero() {
+      const num = parseInt(document.getElementById('numero').value);
+      const div = document.getElementById('verificacion');
+      if (esSafePrime(num)) {
+        div.innerHTML = `<strong>${num}</strong> es un <span style="color:#ffd700;">Primo de Seguridad</span>`;
+      } else if (esPrimo(num)) {
+        div.innerHTML = `${num} es primo, pero no de seguridad.`;
+      } else {
+        div.innerHTML = `${num} no es primo.`;
+      }
+    }
+
+    function generarPrimos() {
+      let primos = [], candidato = 5;
+      while (primos.length < 10) {
+        if (esSafePrime(candidato)) primos.push(candidato);
+        candidato += 2;
+      }
+      let html = "<ul>";
+      primos.forEach(p => html += `<li><strong>${p}</strong> → (p-1)/2 = ${(p-1)/2}</li>`);
+      html += "</ul>";
+      document.getElementById('lista').innerHTML = html;
+    }
+  </script>
+</body>
+</html>

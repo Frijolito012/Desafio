@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 1 - Fibonacci Ahorro</title>
+  <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Problema 1: Fibonacci - Ahorro Progresivo</h1>
+    <a href="pagina principal.html" class="btn" style="background:#666;">← Volver al Menú</a>
+
+    <div class="card">
+      <label>Meses a ahorrar:</label>
+      <input type="number" id="meses" value="12" min="1" max="30">
+      <button onclick="calcularAhorro()">Calcular</button>
+
+      <div id="resultado" style="margin:20px 0; font-size:1.3em;"></div>
+      <table id="tabla"></table>
+    </div>
+  </div>
+
+  <script>
+    function fibonacci(n) {
+      let fib = [0, 1];
+      for (let i = 2; i < n; i++) fib[i] = fib[i-1] + fib[i-2];
+      return fib;
+    }
+
+    function calcularAhorro() {
+      const meses = parseInt(document.getElementById('meses').value);
+      const fib = fibonacci(meses + 1);
+      let acumulado = 0;
+      let html = `<tr><th>Mes</th><th>Ahorro Mensual (Bs)</th><th>Acumulado (Bs)</th></tr>`;
+
+      for (let i = 1; i <= meses; i++) {
+        acumulado += fib[i];
+        html += `<tr><td>${i}</td><td><strong>${fib[i].toLocaleString()}</strong></td><td>${acumulado.toLocaleString()}</td></tr>`;
+      }
+
+      document.getElementById('tabla').innerHTML = html;
+      document.getElementById('resultado').innerHTML = `
+        En <strong>${meses} meses</strong> ahorrarías <strong>${acumulado.toLocaleString()} Bs</strong>
+      `;
+    }
+
+    window.onload = calcularAhorro;
+  </script>
+</body>
+</html>

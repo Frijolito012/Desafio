@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+h2, h3 {
+    color: #00d2ff;
+    margin: 20px 0 15px 0;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.btn {
+    display: inline-block;
+    background: #00d2ff;
+    color: #000;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.2);
+    overflow-x: auto;
+    display: block;
+}
+
+th, td {
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+th {
+    background: rgba(255,255,255,0.15);
+}
+input, button {
+    padding: 12px;
+    margin: 8px 5px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+}
+
+button {
+    background: #00d2ff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    max-width: 200px;
+}
+
+button:hover {
+    background: #fff;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .card {
+        padding: 20px;
+        margin: 15px 0;
+    }
+    
+    input, button {
+        max-width: 100%;
+        margin: 8px 0;
+    }
+    
+    table {
+        font-size: 0.95em;
+    }
+    
+    th, td {
+        padding: 10px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6em;
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 15px 0;
+    }
+}
