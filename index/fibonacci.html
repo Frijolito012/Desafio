@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahorro Progresivo con Fibonacci</title>
+  <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Ahorro Progresivo con Fibonacci</h1>
+    <a href="pagina principal.html" class="btn" style="background:#666;">← Volver al Menú</a>
+
+    <div class="card">
+      <h2>¿Qué hace esta página?</h2>
+      <p>Te permite simular un plan de ahorro donde <strong>cada mes ahorras más que el anterior</strong>, siguiendo la secuencia de Fibonacci. Puedes definir cuánto quieres ahorrar al inicio y durante cuántos meses.</p>
+    </div>
+
+    <div class="card">
+      <label>Cantidad Inicial: </label>
+      <input type="number" id="inicial" value="100" min="0">
+      
+      <label>Número de Meses:</label>
+      <input type="number" id="meses" value="12" min="1" max="36">
+      
+      <button onclick="calcularAhorro()">Calcular Ahorro</button>
+
+      <div id="resultado" style="margin:25px 0; font-size:1.4em; font-weight:bold;"></div>
+      <table id="tabla"></table>
+    </div>
+  </div>
+
+  <script>
+    function fibonacci(n) {
+      let fib = [0, 1];
+      for (let i = 2; i < n; i++) fib[i] = fib[i-1] + fib[i-2];
+      return fib;
+    }
+
+    function calcularAhorro() {
+      const inicial = parseFloat(document.getElementById('inicial').value) || 0;
+      const meses = parseInt(document.getElementById('meses').value);
+      const fib = fibonacci(meses + 1);
+      
+      let html = `<tr><th>Mes</th><th>Fibonacci</th><th>Ahorro Mensual (Bs)</th><th>Acumulado (Bs)</th></tr>`;
+      let acumulado = inicial;
+
+      for (let i = 1; i <= meses; i++) {
+        const fibMes = fib[i];
+        const mensual = inicial + fibMes;
+        acumulado += mensual;
+        html += `<tr><td>${i}</td><td>${fibMes}</td><td><strong>${mensual.toLocaleString()}</strong></td><td>${acumulado.toLocaleString()}</td></tr>`;
+      }
+
+      document.getElementById('tabla').innerHTML = html;
+      document.getElementById('resultado').innerHTML = `En ${meses} meses ahorrarías <strong>${acumulado.toLocaleString()} Bs</strong>`;
+    }
+
+    window.onload = calcularAhorro;
+  </script>
+</body>
+</html>
